@@ -11,7 +11,7 @@
   "keywords": [
     "bun"
   ],
-  "license": "MIT",git
+  "license": "MIT",
   "author": "Shishir Pai (mgpai22@github.com)",
   "devDependencies": {
     "bun-plugin-dts": "^0.1.0",
