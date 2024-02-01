@@ -1,0 +1,13 @@
+{
+    "startBlockHeight": 1190328,
+    "rewardInterval": 2,
+    "rewardToken": {
+        "tokenId": "1465c9b9de602bd75f8f38df83118e2c8b1d5b2f5518514dd1438149053652a8",
+        "amount": "1000000"
+    },
+    "nanoErgPerTx": "1000000",
+    "nanoErgMinerFee": "1100000",
+    "nodeUrl": "http://213.239.193.208:9053/",
+    "explorerApi": "https://api.ergoplatform.com",
+    "blacklist": []
+}
