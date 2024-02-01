@@ -1,27 +1,18 @@
 {
-  "name": "fleet-ergo-chained-token-sender",
+  "name": "miner-rewarder",
   "version": "0.0.1",
   "main": "src/app/main.ts",
-  "description": "Sends transactions in a chained transaction to one recipient per transaction. Only one token type can be sent per transaction.",
+  "description": "Bot on Ergo Network which rewards a random miner from a user-defined group of blocks. This reward process occurs at regular, specified intervals",
   "scripts": {
     "start": "bun run src/app/main.ts",
     "lint": "eslint --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
   },
-  "files": [
-    "dist"
-  ],
   "keywords": [
     "bun"
   ],
-  "license": "MIT",
-  "homepage": "https://github.com/wobsoriano/pkg-name#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wobsoriano/pkg-name.git"
-  },
-  "bugs": "https://github.com/wobsoriano/pkg-name/issues",
-  "author": "Robert Soriano <sorianorobertc@gmail.com>",
+  "license": "MIT",git
+  "author": "Shishir Pai (mgpai22@github.com)",
   "devDependencies": {
     "bun-plugin-dts": "^0.1.0",
     "bun-types": "^1.0.1",
