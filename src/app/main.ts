@@ -151,7 +151,7 @@ async function main() {
                 explorerApi: params.explorerApi,
                 blacklist: params.blacklist,
               };
-              await writeFile(file, JSON.stringify(newParams, null, 2));
+              await writeFile('params.json', JSON.stringify(newParams, null, 2));
               logger.debug(`wrote to file, new height: ${mutStartBlockHeight}`);
             } catch (error) {
               logger.error('could not write to file');
