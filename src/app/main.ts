@@ -10,6 +10,7 @@ import { checkApi, checkEnv } from '../utils/check';
 import { getRewardAddresses } from '../utils/rewarder-selector';
 import { TransactionHelper } from '../utils/transaction-helper';
 import logger from '../logger/logger';
+import { readFile, writeFile } from 'fs/promises';
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -32,8 +33,8 @@ async function main() {
   let file;
 
   try {
-    file = Bun.file('params.json');
-    params = await file.json();
+    file = await readFile('params.json', 'utf8');
+    params = JSON.parse(file);
   } catch (error) {
     logger.error(error);
     logger.info('could not access params file');
@@ -139,9 +140,19 @@ async function main() {
           if ((rewardTxId as any).id) {
             logger.info(`Reward Tx submitted: ${(rewardTxId as any).id}`);
             try {
-              const fileContents = await file.json();
-              fileContents.startBlockHeight = mutStartBlockHeight;
-              await Bun.write(file, JSON.stringify(fileContents, null, 4));
+              params.startBlockHeight = mutStartBlockHeight;
+              const newParams = {
+                startBlockHeight: mutStartBlockHeight,
+                rewardInterval: params.rewardInterval,
+                rewardToken: params.rewardToken,
+                nanoErgPerTx: params.nanoErgPerTx,
+                nanoErgMinerFee: params.nanoErgMinerFee,
+                nodeUrl: params.nodeUrl,
+                explorerApi: params.explorerApi,
+                blacklist: params.blacklist,
+              };
+              await writeFile(file, JSON.stringify(newParams, null, 2));
+              logger.debug(`wrote to file, new height: ${mutStartBlockHeight}`);
             } catch (error) {
               logger.error('could not write to file');
               throw new Error('could not write to file');
