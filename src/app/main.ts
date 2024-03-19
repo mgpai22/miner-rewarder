@@ -139,26 +139,16 @@ async function main() {
 
           if ((rewardTxId as any).id) {
             logger.info(`Reward Tx submitted: ${(rewardTxId as any).id}`);
+            mutStartBlockHeight = currentHeight + 1;
             try {
               params.startBlockHeight = mutStartBlockHeight;
-              const newParams = {
-                startBlockHeight: mutStartBlockHeight,
-                rewardInterval: params.rewardInterval,
-                rewardToken: params.rewardToken,
-                nanoErgPerTx: params.nanoErgPerTx,
-                nanoErgMinerFee: params.nanoErgMinerFee,
-                nodeUrl: params.nodeUrl,
-                explorerApi: params.explorerApi,
-                blacklist: params.blacklist,
-              };
-              await writeFile('params.json', JSON.stringify(newParams, null, 2));
+              await writeFile('params.json', JSON.stringify(params, null, 2));
               logger.debug(`wrote to file, new height: ${mutStartBlockHeight}`);
             } catch (error) {
               logger.error('could not write to file');
               throw new Error('could not write to file');
             }
           }
-          mutStartBlockHeight = currentHeight + 1;
         }
 
         prevHeight = currentHeight;
